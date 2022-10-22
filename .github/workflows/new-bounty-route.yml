@@ -1,0 +1,34 @@
+name: New Bounty Route
+
+on: issues
+
+env:
+  gh_organization: scrf-test
+  pb_bounties_contibutor_id:  58
+  pb_bounties_core_id: 57
+  pb_bounties_community_id: 55
+  gh_project_token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+  issue_id: ${{ github.event.issue.number }}  
+
+jobs:
+  route_bounty:  
+    name: Route Bounty
+    runs-on: ubuntu-latest
+    if: contains( github.event.issue.title, '🆕Bounty' )
+    steps:
+      - name: Issue Parse
+        id: issue_parse
+        uses: peter-murray/issue-forms-body-parser@v2.0.0
+        with: 
+          github_token: ${{ env.gh_project_token }}
+          issue_id: ${{ env.issue_id }}
+          separator: '###'
+          label_marker_start: '◾'
+          label_marker_end: '◾'   
+
+      - name: Select JQ Values
+        id: jq-values
+        run: |
+          echo "::set-output name=ROLE_LEVEL::$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles Selection"')" 
+        
+      
