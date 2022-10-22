@@ -47,7 +47,7 @@ jobs:
   route_bounty_core:  
     name: Route Bounty Core
     runs-on: ubuntu-latest    
-    if: contains( github.jobs.parse_bounty.outputs.roles, 'Core' )
+    if: contains( needs.parse_bounty.outputs.roles, 'Core' )
     steps:      
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
