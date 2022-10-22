@@ -30,6 +30,7 @@ jobs:
         id: jq-values
         run: |
           echo "::set-output name=ROLES_SELECTION::$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles Selection"')" 
+          echo ${{ steps.jq-values.outputs.ROLES_SELECTION }}
           
 
       
