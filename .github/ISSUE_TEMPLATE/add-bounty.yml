@@ -32,3 +32,10 @@ body:
     validations:
       required: true
 
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe Bounty
+    validations:
+      required: true
+
