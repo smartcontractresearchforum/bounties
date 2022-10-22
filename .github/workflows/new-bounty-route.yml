@@ -37,10 +37,11 @@ jobs:
   debug_output:
     name: Debug Output
     runs-on: ubuntu-latest
+    needs: parse_bounty
     steps:
       - name: find roles
         id: fond-roles
-        run: echo ${{ parse_bounty.outputs.roles }}
+        run: echo ${{ needs.parse_bounty.outputs.roles }}
 
 
   route_bounty_core:  
