@@ -8,8 +8,8 @@ body:
   - type: dropdown
     id: is-core-select
     attributes:
-      label: Core
-      description: Which roles can claim this bounty.
+      label: Roles Selection
+      description: Multiple Selection. Which roles can claim this bounty.
       multiple: true
       options:
         - "Core"
