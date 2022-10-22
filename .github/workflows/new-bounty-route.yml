@@ -16,7 +16,8 @@ jobs:
     runs-on: ubuntu-latest  
     if: contains( github.event.issue.title, '🆕Bounty' )
     outputs:
-      roles: ${{steps.jq-values.outputs.roles}}
+      roles: "hello role, Core"
+      # ${{steps.jq-values.outputs.roles}}
     steps:
       - name: Issue Parse
         id: issue_parse
@@ -32,6 +33,15 @@ jobs:
         id: jq-values
         run: |
           echo "roles=$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."◾Roles"')" >> $GITHUB_OUTPUT          
+
+  debug_output:
+    name: Debug Output
+    runs-on: ubuntu-latest
+    steps:
+      - name: find roles
+        id: fond-roles
+        run: echo ${{github.jobs.parse_bounty.output.roles}}
+
 
   route_bounty_core:  
     name: Route Bounty Core
