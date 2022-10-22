@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: find roles
         id: fond-roles
-        run: echo ${{github.jobs.parse_bounty.output.roles}}
+        run: echo github.jobs.parse_bounty.output.roles
 
 
   route_bounty_core:  
