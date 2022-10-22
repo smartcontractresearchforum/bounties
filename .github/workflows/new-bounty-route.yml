@@ -25,7 +25,7 @@ jobs:
           separator: '###'
           label_marker_start: '◾'
           label_marker_end: '◾'   
-
+  
       - name: Select JQ Values
         id: jq-values
         run: |
@@ -41,7 +41,7 @@ jobs:
   route_bounty_core:  
     name: Route Bounty Core
     runs-on: ubuntu-latest
-    if: contains( steps.jq-values.env.value_roles_selection, 'core' )
+    if: ${{ contains( steps.jq-values.env.value_roles_selection, 'core' ) }}
     steps:      
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
