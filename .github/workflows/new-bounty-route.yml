@@ -47,7 +47,7 @@ jobs:
   route_bounty_core:  
     name: Route Bounty Core
     runs-on: ubuntu-latest 
-    needs: parse_boutny   
+    needs: parse_bounty 
     if: ${{ contains( needs.parse_bounty.outputs.roles, 'Core' ) }}
     steps:      
       - name: Add To Project Boards
