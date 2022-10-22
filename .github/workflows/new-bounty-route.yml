@@ -36,7 +36,7 @@ jobs:
       - name: test output
         id: test-output
         run: |
-          echo env.value_roles_selection
+          echo steps.jq-values.env.value_roles_selection
 
   route_bounty_core:  
     name: Route Bounty Core
