@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest  
     if: contains( github.event.issue.title, '🆕Bounty' )
     outputs:
-      roles: ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles"
+      roles: ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles"'
     steps:
       - name: Issue Parse
         id: issue_parse
