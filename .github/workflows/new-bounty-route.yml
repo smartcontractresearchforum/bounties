@@ -44,7 +44,7 @@ jobs:
     steps:      
       - name: scope
         run: |
-          echo github
+          echo ${{github}}
 
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
