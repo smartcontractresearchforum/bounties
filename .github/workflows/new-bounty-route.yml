@@ -15,6 +15,8 @@ jobs:
     name: Parse Bounty
     runs-on: ubuntu-latest  
     if: contains( github.event.issue.title, '🆕Bounty' )
+    outputs:
+      roles: ${{steps.jq-values.outputs.roles}}
     steps:
       - name: Issue Parse
         id: issue_parse
@@ -29,14 +31,7 @@ jobs:
       - name: Select JQ Values
         id: jq-values
         run: |
-          echo "::set-output name=ROLES::$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."◾Roles"')" 
-        env:
-          value_roles_selection: ${{ steps.jq-values.outputs.ROLES }}
-      
-      - name: test output
-        id: test-output
-        run: |
-          echo steps.jq-values.env.value_roles_selection
+          echo "roles=$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."◾Roles"')" >> $GITHUB_OUTPUT          
 
   route_bounty_core:  
     name: Route Bounty Core
@@ -44,7 +39,7 @@ jobs:
     steps:      
       - name: scope
         run: |
-          echo ${{github}}
+          echo ${{github.jobs.parse_bounty.outputs.roles}}
 
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
