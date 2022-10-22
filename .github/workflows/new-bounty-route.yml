@@ -80,5 +80,5 @@ jobs:
         with:
           gh_token: ${{ env.gh_project_token }}
           organization: ${{ env.gh_organization }}
-          project_id: ${{ env.pb_bounties_contributor_id }}
+          project_id: ${{ env.pb_bounties_contibutor_id }}
           resource_node_id: ${{ github.event.issue.node_id }}                                    
