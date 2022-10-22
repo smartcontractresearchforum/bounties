@@ -3,9 +3,6 @@ name: New Bounty Route
 on: issues
 
 env:
-  select_core: 'Core'
-  select_community: 'Community'
-  select_contributor: 'Contributor'
   gh_organization: smartcontractresearchforum
   pb_bounties_contibutor_id:  58
   pb_bounties_core_id: 57
@@ -45,7 +42,7 @@ jobs:
     name: Route Bounty Core
     runs-on: ubuntu-latest 
     needs: parse_bounty 
-    if: ${{ contains( needs.parse_bounty.outputs.roles, env.select_core ) }}
+    if: contains( needs.parse_bounty.outputs.roles, 'Core' )
     steps:      
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
@@ -60,7 +57,7 @@ jobs:
     name: Route Bounty Community
     runs-on: ubuntu-latest 
     needs: parse_bounty 
-    if: ${{ contains( needs.parse_bounty.outputs.roles, env.select_community ) }}
+    if: contains( needs.parse_bounty.outputs.roles, 'Community' )
     steps:      
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
@@ -75,7 +72,7 @@ jobs:
     name: Route Bounty Contributor
     runs-on: ubuntu-latest 
     needs: parse_bounty 
-    if: ${{ contains( needs.parse_bounty.outputs.roles, env.select_contributor ) }}
+    if: contains( needs.parse_bounty.outputs.roles, 'Contributor' )
     steps:      
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
