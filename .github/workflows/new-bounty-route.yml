@@ -3,6 +3,9 @@ name: New Bounty Route
 on: issues
 
 env:
+  select_core: 'Core'
+  select_community: 'Community'
+  select_contributor: 'Contributor'
   gh_organization: smartcontractresearchforum
   pb_bounties_contibutor_id:  58
   pb_bounties_core_id: 57
@@ -27,15 +30,7 @@ jobs:
           separator: '###'
           label_marker_start: '◾'
           label_marker_end: '◾'  
-        
-  
-  # jq-values:
-  #   runs-on: ubuntu-latest
-  #   needs: parse_bounty
-  #   steps:
-  #     - run: |
-  #         echo "roles=$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."◾Roles"')" >> $GITHUB_OUTPUT          
-
+    
   debug_output:
     name: Debug Output
     runs-on: ubuntu-latest
@@ -50,7 +45,7 @@ jobs:
     name: Route Bounty Core
     runs-on: ubuntu-latest 
     needs: parse_bounty 
-    if: ${{ contains( needs.parse_bounty.outputs.roles, 'Core' ) }}
+    if: ${{ contains( needs.parse_bounty.outputs.roles, env.select_core ) }}
     steps:      
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
@@ -60,3 +55,33 @@ jobs:
           organization: ${{ env.gh_organization }}
           project_id: ${{ env.pb_bounties_core_id }}
           resource_node_id: ${{ github.event.issue.node_id }}                
+
+  route_bounty_community:  
+    name: Route Bounty Community
+    runs-on: ubuntu-latest 
+    needs: parse_bounty 
+    if: ${{ contains( needs.parse_bounty.outputs.roles, env.select_community ) }}
+    steps:      
+      - name: Add To Project Boards
+        uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
+        id: add-to-project-baords
+        with:
+          gh_token: ${{ env.gh_project_token }}
+          organization: ${{ env.gh_organization }}
+          project_id: ${{ env.pb_bounties_community_id }}
+          resource_node_id: ${{ github.event.issue.node_id }}                          
+
+  route_bounty_contributor: 
+    name: Route Bounty Contributor
+    runs-on: ubuntu-latest 
+    needs: parse_bounty 
+    if: ${{ contains( needs.parse_bounty.outputs.roles, env.select_contributor ) }}
+    steps:      
+      - name: Add To Project Boards
+        uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
+        id: add-to-project-baords
+        with:
+          gh_token: ${{ env.gh_project_token }}
+          organization: ${{ env.gh_organization }}
+          project_id: ${{ env.pb_bounties_contributor_id }}
+          resource_node_id: ${{ github.event.issue.node_id }}                                    
