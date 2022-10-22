@@ -30,7 +30,8 @@ jobs:
         id: jq-values
         run: |
           echo ${{ toJSON(steps.issue_parse.outputs.payload) }}
+          echo "hello"
           echo "{ROLES}={$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles Selection"')}" >> $GITHUB_OUTPUT
-          echo "::set-output name=ROLES::$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles Selection"')" 
+          
 
       
