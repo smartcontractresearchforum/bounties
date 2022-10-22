@@ -29,8 +29,21 @@ jobs:
       - name: Select JQ Values
         id: jq-values
         run: |
-          echo "::set-output name=ROLES_SELECTION::$(echo ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles Selection"')" 
-          echo ${{ steps.jq-values.outputs.ROLES_SELECTION }}
+          echo ${{ toJSON(steps.issue_parse.outputs.payload) }}
+          echo "{ROLES}={ ${{ toJSON(steps.issue_parse.outputs.payload) }} }" >> $GITHUB_OUTPUT
+      
+      - name: Add To Project Boards
+        uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
+        id: add-to-project-baords
+        env:
+          DEBUG_LOG: "true"
+          key_roles: "ROLES"   
+          value_role_level: ${{ steps.jq-values.outputs.ROLES }}
+        with:
+          gh_token: ${{ env.gh_project_token }}
+          organization: ${{ env.gh_organization }}
+          project_id: ${{ env.pb_bounties_core_id }}
+          resource_node_id: ${{ github.event.issue.node_id }}          
           
 
       
