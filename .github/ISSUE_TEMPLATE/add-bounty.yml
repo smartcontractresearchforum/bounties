@@ -1,0 +1,33 @@
+name: 🚀 - New Bounty
+description: Add a new bounty.
+title: "🆕 Bounty - "
+labels: [Bounty]
+assignees:
+  - SirAh0
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this new user form!
+
+  - type: textarea
+    id: text
+    attributes:
+      label: Describe the request
+      description: Please be as complete as possible with information such as the when, where, cadence, URLs, post content etc. 
+
+  - type: markdown
+    attributes:
+      value: |
+        # Roles
+
+  - type: dropdown
+    id: is-core-select
+    attributes:
+      label: Core
+      description: Is this bounty available to the core role?
+      multiple: true
+      options:
+        - "First"
+        - "Second"
+        - "Third"
