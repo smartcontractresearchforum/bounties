@@ -1,6 +1,6 @@
 name: 🚀 - New Bounty
 description: Add a new bounty.
-title: "🆕 Bounty - "
+title: "🆕 Bounty - <BOUNTY NAME>"
 labels: [Bounty]
 assignees:
   - SirAh0
@@ -15,4 +15,20 @@ body:
         - "Core"
         - "Contributor"
         - "Community"
+    validations:
+      required: true
+
+  - type: input
+    id: name
+    attributes:
+      label: Bounty Name
+    validations:
+      required: true
+
+  - type: input
+    id: dai
+    attributes:
+      label: DAI Payment
+    validations:
+      required: true
 
