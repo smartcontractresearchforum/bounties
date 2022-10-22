@@ -40,9 +40,12 @@ jobs:
 
   route_bounty_core:  
     name: Route Bounty Core
-    runs-on: ubuntu-latest
-    if: ${{ contains( steps.jq-values.env.value_roles_selection, 'core' ) }}
+    runs-on: ubuntu-latest    
     steps:      
+      - name: scope
+        run: |
+          echo github
+
       - name: Add To Project Boards
         uses: leonsteinhaeuser/project-beta-automations@v1.2.1  
         id: add-to-project-baords
