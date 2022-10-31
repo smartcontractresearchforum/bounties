@@ -3,7 +3,7 @@ name: Add Contributor to contributor project
 on:
   issues:
     types:
-      - opened
+      - labeled
 
 jobs:
   add-to-project:
