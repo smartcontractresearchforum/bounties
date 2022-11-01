@@ -23,7 +23,31 @@ jobs:
           # to the issue
           project-url: https://github.com/orgs/smartcontractresearchforum/projects/58
           github-token: ${{ env.gh_project_token }}
-          labeled: "🎯 Bounty : Contributor"      
+          labeled: "🎯 Bounty : Contributor"
+
+  route_label_core:
+    name: "Route - [🎯 Bounty : Core]"
+    runs-on: ubuntu-latest  
+    steps:      
+      - uses: actions/add-to-project@v0.3.0            
+        with:
+          # You can target a repository in a different organization
+          # to the issue
+          project-url: https://github.com/orgs/smartcontractresearchforum/projects/57
+          github-token: ${{ env.gh_project_token }}
+          labeled: "🎯 Bounty : Core"
+
+  route_label_community:
+    name: "Route - [🎯 Bounty : Community]"
+    runs-on: ubuntu-latest  
+    steps:      
+      - uses: actions/add-to-project@v0.3.0            
+        with:
+          # You can target a repository in a different organization
+          # to the issue
+          project-url: https://github.com/orgs/smartcontractresearchforum/projects/55
+          github-token: ${{ env.gh_project_token }}
+          labeled: "🎯 Bounty : Community"                          
 
   parse_bounty:
     name: Parse Bounty
