@@ -1,6 +1,8 @@
 name: New Bounty Route
 
-on: issues
+on:
+  issues:
+    types: [opened, labeled]
 
 env:
   gh_organization: smartcontractresearchforum
