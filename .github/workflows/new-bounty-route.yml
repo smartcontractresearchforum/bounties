@@ -17,7 +17,7 @@ jobs:
     name: "Route - [🎯 Bounty : Contributor]"
     runs-on: ubuntu-latest  
     steps:      
-      - uses: actions/add-to-project@RELEASE_VERSION              
+      - uses: actions/add-to-project            
         with:
           # You can target a repository in a different organization
           # to the issue
