@@ -13,6 +13,18 @@ env:
   issue_id: ${{ github.event.issue.number }}  
 
 jobs:
+  route_label_contributor:
+    name: "Route - [🎯 Bounty : Contributor]"
+    runs-on: ubuntu-latest  
+    steps:      
+      - uses: actions/add-to-project@RELEASE_VERSION
+        with:
+          # You can target a repository in a different organization
+          # to the issue
+          project-url: https://github.com/orgs/smartcontractresearchforum/projects/58
+          github-token: ${{ env.gh_project_token }}
+          labeled: "🎯 Bounty : Contributor"      
+
   parse_bounty:
     name: Parse Bounty
     runs-on: ubuntu-latest  
