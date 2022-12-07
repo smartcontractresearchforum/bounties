@@ -125,18 +125,19 @@ jobs:
     needs: parse_bounty
     steps:
       - name: Set Meta Data
-        uses: leonsteinhaeuser/project-beta-automations@v1.2.1
+        uses: leonsteinhaeuser/project-beta-automations@v2
         env:
           DEBUG_LOG: "true"
           field_type: "single_select"   
           # key_role_level: "Roles"   
           # value_role_level: ${{ steps.jq-values.outputs.ROLE_LEVEL }}
           key_vertical: "Vertical"
-          value_vertical: ${{ needs.parse_bounty.outputs.verticle }}
+          value_vertical: "Engagement"
+          # ${{ needs.parse_bounty.outputs.verticle }}
           pb_meta_data: '[{            
             \"name\":\"$key_vertical\",
             \"type\":\"$field_type\",
-            \"value\":\"${{env.value_vertical}}\" }]'
+            \"value\":\"Engagement\" }]'
         with:
           gh_token: ${{ env.gh_project_token }}
           organization: ${{ env.gh_organization }}
