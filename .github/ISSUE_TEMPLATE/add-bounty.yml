@@ -12,6 +12,7 @@ body:
         - [Bounties - Core](https://github.com/orgs/smartcontractresearchforum/projects/57)
         - [Bounties - Community](https://github.com/orgs/smartcontractresearchforum/projects/55/views/1)
 
+        ## Bounty Information
   - type: dropdown
     id: roles
     attributes:
