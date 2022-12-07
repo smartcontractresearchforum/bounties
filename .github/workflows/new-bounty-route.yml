@@ -132,7 +132,7 @@ jobs:
           # key_role_level: "Roles"   
           # value_role_level: ${{ steps.jq-values.outputs.ROLE_LEVEL }}
           key_vertical: "Vertical"
-          value_vertical: ${{ needs.parse_bounty.outputs.verticle }}
+          value_vertical: needs.parse_bounty.outputs.verticle
           pb_meta_data: '[{            
             \"name\":\"$key_vertical\",
             \"type\":\"$field_type\",
