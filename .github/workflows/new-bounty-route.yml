@@ -87,20 +87,67 @@ jobs:
           echo ${{ needs.parse_bounty.outputs.roles }}
           echo ${{ needs.parse_bounty.outputs.verticle }}
 
+  #
+  # APPLY LABEL
   # https://docs.github.com/en/actions/managing-issues-and-pull-requests/adding-labels-to-issues
-  apply_label:
-    name: Apply label
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.issues.addLabels({
-              labels: [ "🎯 Bounty : ${{ needs.parse_bounty.outputs.verticle }}" ]
-            })
+  #
+  #
+  # apply_label:  
+  #   name: Apply label
+  #   runs-on: ubuntu-latest
+  #   permissions:
+  #     issues: write
+  #   steps:
+  #     - uses: actions/github-script@v6
+  #       with:
+  #         script: |
+  #           github.rest.issues.addLabels({
+  #             labels: [ "🎯 Bounty : ${{ needs.parse_bounty.outputs.roles }}" ]
+  #           })
 
+
+  #
+  # SET METADATA
+  # 
+  #
+  #   test_pb_meta_data: '[{
+  #   \"name\":\"$key_role_level\",
+  #   \"type\":\"$field_type\",
+  #   \"value\":\"$value_role_level\"
+  # },{
+  #   \"name\":\"$key_vertical\",
+  #   \"type\":\"$field_type\",
+  #   \"value\":\"$value_vertical\"
+  # }]'
+  set_metadata:
+    name: Set PB MetaData [Role Level]
+    runs-on: ubuntu-latest
+    needs: parse_bounty
+    steps:
+      - name: Set Meta Data
+        uses: leonsteinhaeuser/project-beta-automations@v1.2.1
+        env:
+          DEBUG_LOG: "true"
+          field_type: "single_select"   
+          # key_role_level: "Roles"   
+          # value_role_level: ${{ steps.jq-values.outputs.ROLE_LEVEL }}
+          key_vertical: "Vertical"
+          value_vertical: ${{ needs.parse_bounty.outputs.verticle }}
+          pb_meta_data: '[{            
+            \"name\":\"$key_vertical\",
+            \"type\":\"$field_type\",
+            \"value\":\"$value_vertical\" }]'
+        with:
+          gh_token: ${{ env.gh_project_token }}
+          organization: ${{ env.gh_organization }}
+          project_id: ${{ env.project_id }}
+          resource_node_id: ${{ github.event.issue.node_id }}
+          operation_mode: custom_field
+          custom_field_values: ${{ env.pb_meta_data }}          
+
+  #
+  # ROUTE TO PROJECT BOARD
+  #
   route_bounty_core:  
     name: Route Bounty Core
     runs-on: ubuntu-latest 
