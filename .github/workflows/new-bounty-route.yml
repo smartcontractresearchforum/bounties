@@ -81,9 +81,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: parse_bounty
     steps:
-      - name: find roles
-        id: fond-roles
-        run: echo ${{ needs.parse_bounty.outputs.roles }}
+      - name: Echo Debug Data
+        id: echo-debug-data
+        run: 
+          echo ${{ needs.parse_bounty.outputs.roles }}
+          echo ${{ needs.parse_bounty.outputs.verticle }}
 
 
   route_bounty_core:  
