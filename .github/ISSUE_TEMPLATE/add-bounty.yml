@@ -2,9 +2,15 @@ name: 🚀 - New Bounty
 description: Add a new bounty.
 title: "[🆕Bounty] <BOUNTY NAME>"
 labels: [Bounty]
-assignees:
-  - SirAh0
 body:
+  - type: markdown
+    attributes:
+      value: |
+        *Project Boards*
+        - [Bounties - Contibutor](https://github.com/orgs/smartcontractresearchforum/projects/58)
+        - [Bounties - Core](https://github.com/orgs/smartcontractresearchforum/projects/57)
+        - [Bounties - Community](https://github.com/orgs/smartcontractresearchforum/projects/55/views/1)
+        
   - type: dropdown
     id: roles
     attributes:
