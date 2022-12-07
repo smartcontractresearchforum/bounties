@@ -34,9 +34,9 @@ body:
       required: true      
 
   - type: dropdown
-    id: levels
+    id: level
     attributes:
-      label: Levels
+      label: ◾Level◾
       description: See below table for reference.
       multiple: false
       options:
