@@ -6,11 +6,12 @@ body:
   - type: markdown
     attributes:
       value: |
-        *Project Boards*
+        ## Resources
+        Created Issues are tracked in the following **Project Boards**
         - [Bounties - Contibutor](https://github.com/orgs/smartcontractresearchforum/projects/58)
         - [Bounties - Core](https://github.com/orgs/smartcontractresearchforum/projects/57)
         - [Bounties - Community](https://github.com/orgs/smartcontractresearchforum/projects/55/views/1)
-        
+
   - type: dropdown
     id: roles
     attributes:
