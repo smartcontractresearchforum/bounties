@@ -87,6 +87,7 @@ jobs:
           echo ${{ needs.parse_bounty.outputs.roles }}
           echo ${{ needs.parse_bounty.outputs.verticle }}
 
+  # https://docs.github.com/en/actions/managing-issues-and-pull-requests/adding-labels-to-issues
   apply_label:
     name: Apply label
     runs-on: ubuntu-latest
@@ -97,7 +98,7 @@ jobs:
         with:
           script: |
             github.rest.issues.addLabels({
-              labels: [ "🎯 Bounty : " + ${{needs.parse_bounty.outputs.verticle}} ]
+              labels: [ "🎯 Bounty : ${{ needs.parse_bounty.outputs.verticle }}" ]
             })
 
   route_bounty_core:  
