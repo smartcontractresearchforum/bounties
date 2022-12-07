@@ -140,7 +140,7 @@ jobs:
         with:
           gh_token: ${{ env.gh_project_token }}
           organization: ${{ env.gh_organization }}
-          project_id: ${{ env.project_id }}
+          project_id: ${{ env.pb_bounties_core_id }}
           resource_node_id: ${{ github.event.issue.node_id }}
           operation_mode: custom_field
           custom_field_values: ${{ env.pb_meta_data }}          
