@@ -83,7 +83,7 @@ jobs:
     steps:
       - name: Echo Debug Data
         id: echo-debug-data
-        run: 
+        run: |
           echo ${{ needs.parse_bounty.outputs.roles }}
           echo ${{ needs.parse_bounty.outputs.verticle }}
 
