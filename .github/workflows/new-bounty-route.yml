@@ -136,7 +136,7 @@ jobs:
           pb_meta_data: '[{            
             \"name\":\"$key_vertical\",
             \"type\":\"$field_type\",
-            \"value\":\"${{value_vertical}}\" }]'
+            \"value\":\"${{env.value_vertical}}\" }]'
         with:
           gh_token: ${{ env.gh_project_token }}
           organization: ${{ env.gh_organization }}
