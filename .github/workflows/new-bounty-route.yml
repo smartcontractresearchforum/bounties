@@ -125,7 +125,7 @@ jobs:
     needs: parse_bounty
     steps:
       - name: Set Meta Data
-        uses: leonsteinhaeuser/project-beta-automations@v2
+        uses: leonsteinhaeuser/project-beta-automations@v2.0.0
         env:
           DEBUG_LOG: "true"
           field_type: "single_select"   
