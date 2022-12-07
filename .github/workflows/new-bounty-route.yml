@@ -12,7 +12,11 @@ env:
   gh_project_token: ${{ secrets.BOUNTIES_PAT }}
   issue_id: ${{ github.event.issue.number }}  
 
+
 jobs:
+  #
+  # Routes issues based on the label it was just given
+  #
   route_label_contributor:
     name: "Route - [🎯 Bounty : Contributor]"
     runs-on: ubuntu-latest  
@@ -49,12 +53,18 @@ jobs:
           github-token: ${{ env.gh_project_token }}
           labeled: "🎯 Bounty : Community"                          
 
+  #
+  # Examine contents of issue 
+  #  populate meta data on project board
+  #  apply labels
+  #  
   parse_bounty:
     name: Parse Bounty
     runs-on: ubuntu-latest  
     if: contains( github.event.issue.title, '🆕Bounty' )
     outputs:
-      roles: ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles"'
+      roles   : ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Roles"'
+      verticle: ${{ toJSON(steps.issue_parse.outputs.payload) }} | jq -r '."Verticle"'
     steps:
       - name: Issue Parse
         id: issue_parse

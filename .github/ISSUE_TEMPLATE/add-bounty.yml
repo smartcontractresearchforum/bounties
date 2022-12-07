@@ -21,9 +21,9 @@ body:
   - type: dropdown
     id: verticle
     attributes:
-      label: ◾SCRF Verticles◾
-      description: Multiple Selection. Which SCRF Verticle(s) created this bounty.
-      multiple: true
+      label: ◾Verticle◾
+      description: Which SCRF Verticle created this bounty.
+      multiple: false
       options:
         - "Engagement"
         - "Content"
@@ -37,8 +37,8 @@ body:
     id: levels
     attributes:
       label: Levels
-      description: Multiple Selection, please see below table for reference.
-      multiple: true
+      description: See below table for reference.
+      multiple: false
       options:
         - "4"
         - "3"
@@ -56,7 +56,7 @@ body:
         |Level 3	|240                |20	                 |Frequent Meetings and approval after completion of each task	 | Clear Goal, Open ended Tasks           |                          |High - Must Get done|
         |Level 2	|80                 |10	                 |Approval after completion	                                     | Clearly Defined Multiline Task list    |25                        |Medium - Needs to done, needs to be chased	|
         |Level 1	|40                 |5	                 |No Approval required	                                         | Single Tasks                           |15                        |Low - Ok if not done , no need of chasing	|
-        
+
   - type: input
     id: name
     attributes:
