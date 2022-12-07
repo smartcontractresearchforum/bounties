@@ -78,6 +78,3 @@ body:
       label: Describe Bounty
     validations:
       required: true
-
-  - type: markdown
-    id: 
