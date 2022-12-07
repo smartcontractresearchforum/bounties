@@ -87,6 +87,18 @@ jobs:
           echo ${{ needs.parse_bounty.outputs.roles }}
           echo ${{ needs.parse_bounty.outputs.verticle }}
 
+  apply_label:
+    name: Apply label
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              labels: [ "🎯 Bounty : " + ${{needs.parse_bounty.outputs.verticle}} ]
+            })
 
   route_bounty_core:  
     name: Route Bounty Core
